@@ -1,0 +1,1290 @@
+<HTML>
+<HEAD>
+<TITLE>Time Sheet Calculator</TITLE>
+<!-- ver 2.0 12/6/97 -->
+<!-- Copyright (c) 1997 by Kay Stoner, All Rights Reserved -->
+<!-- ver 1.0 created June, 1997 -->
+<!-- ver 1.01 revised December 1997 -->
+<!-- verson 2.0 created Jun3, 1999 -->
+
+<SCRIPT LANGUAGE="JavaScript">
+
+<!-- BEGIN HIDING
+
+	// THIS CALCULATES THE TOTAL TIME FOR THE WEEK
+
+
+function weekTotal() {
+
+	// THIS CALCULATES THE TOTAL TIME FOR MONDAY
+
+// PARSE THE AMOUNTS FOR MONDAY'S IN-TIME
+	var monA = parseInt(document.calcForm.monHrs1.value)
+		if ((document.calcForm.monHrs1.value == "") 
+		|| (document.calcForm.monHrs1.value == "12")) {
+			monA = 0
+		}
+
+	var monAA = parseInt(document.calcForm.monMin1.value)
+		if (document.calcForm.monMin1.value == "") {
+			monAA = 0
+		}
+
+// PARSE THE AMOUNTS FOR MONDAY'S OUT-TIME
+	var monB = parseInt(document.calcForm.monHrs2.value)
+		if (document.calcForm.monHrs2.value == "") {
+			monB = 0
+		}
+
+	var monBB = parseInt(document.calcForm.monMin2.value)
+		if (document.calcForm.monMin2.value == "") {
+			monBB = 0
+		}
+
+// PARSE THE AMOUNTS FOR MONDAY'S  LUNCH TIME
+	var monC = parseInt(document.calcForm.monLunchHrs.value)
+		if (document.calcForm.monLunchHrs.value == "") {
+			monC = 0
+		}
+
+	var monCC = parseInt(document.calcForm.monLunchMin.value)
+		if (document.calcForm.monLunchMin.value == "") {
+			monCC = 0
+		}
+
+
+// CALC # OF TOTAL MINUTES OF IN-TIME (MULT A * 60)
+// IF THIS IS AN AFTERNOON TIME (AFTER 1 P.M.), ADD 720 MINUTES
+	var monAAA = ( monA * 60 ) + monAA
+
+		if ((document.calcForm.monRad1[1].checked) && (monA != 12)) {
+			var monAAA = monAAA + 720
+		}
+
+// CALC # OF TOTAL MINUTES OF OUT-TIME (MULT B * 60)
+// IF THIS IS AN AFTERNOON TIME, ADD 720 MINUTES
+	var monBBB = ( monB * 60 ) + monBB
+
+		if ((document.calcForm.monRad2[1].checked) && (monB != 12)
+		|| (document.calcForm.monRad1[1].checked) && 
+			(document.calcForm.monRad2[1].checked) && (monB == 12)) {
+			var monBBB = monBBB + 720
+		}
+
+
+// CALC # OF TOTAL MINUTES OF LUNCH TIME (MULT A * 60)
+// THIS IS A PLAIN TIME VALUE - NO COMPUTATIONS FOR AM/PM
+	var monCCC = ( monC * 60 ) + monCC
+
+
+	// THIS CALCULATES THE TOTAL TIME FOR TUESDAY
+
+// PARSE THE AMOUNTS FOR TUESDAY'S IN-TIME
+	var tueA = parseInt(document.calcForm.tueHrs1.value)
+		if (document.calcForm.tueHrs1.value == "") {
+			tueA = 0
+		}
+
+		if (document.calcForm.tueHrs1.value == "12") {
+			tueA = 0
+		}
+
+	var tueAA = parseInt(document.calcForm.tueMin1.value)
+		if (document.calcForm.tueMin1.value == "") {
+			tueAA = 0
+		}
+
+// PARSE THE AMOUNTS FOR TUESDAY'S OUT-TIME
+	var tueB = parseInt(document.calcForm.tueHrs2.value)
+		if (document.calcForm.tueHrs2.value == "") {
+			tueB = 0
+		}
+
+	var tueBB = parseInt(document.calcForm.tueMin2.value)
+		if (document.calcForm.tueMin2.value == "") {
+			tueBB = 0
+		}
+
+
+// PARSE THE AMOUNTS FOR TUESDAY'S  LUNCH TIME
+	var tueC = parseInt(document.calcForm.tueLunchHrs.value)
+		if (document.calcForm.tueLunchHrs.value == "") {
+			tueC = 0
+		}
+
+	var tueCC = parseInt(document.calcForm.tueLunchMin.value)
+		if (document.calcForm.tueLunchMin.value == "") {
+			tueCC = 0
+		}
+
+
+// CALC # OF TOTAL MINUTES OF IN-TIME (MULT A * 60)
+// IF THIS IS AN AFTERNOON TIME, ADD 720 MINUTES
+	var tueAAA = ( tueA * 60 ) + tueAA
+
+		if ((document.calcForm.tueRad1[1].checked) && (tueA != 12)) {
+			var tueAAA = tueAAA + 720
+		}
+
+// CALC # OF TOTAL MINUTES OF OUT-TIME (MULT B * 60)
+// IF THIS IS AN AFTERNOON TIME, ADD 720 MINUTES
+	var tueBBB = ( tueB * 60 ) + tueBB
+
+		if ((document.calcForm.tueRad2[1].checked) && (tueB != 12)) {
+			var tueBBB = tueBBB + 720
+		}
+
+		if ((document.calcForm.tueRad1[1].checked) && 
+			(document.calcForm.tueRad2[1].checked) && (tueB == 12)) {
+			var tueBBB = tueBBB + 720
+		}
+
+
+// CALC # OF TOTAL MINUTES OF LUNCH TIME (MULT A * 60)
+// THIS IS A PLAIN TIME VALUE - NO COMPUTATIONS FOR AM/PM
+	var tueCCC = ( tueC * 60 ) + tueCC
+
+
+
+	// THIS CALCULATES THE TOTAL TIME FOR WEDNESDAY
+
+// PARSE THE AMOUNTS FOR WEDNESDAY'S IN-TIME
+	var wedA = parseInt(document.calcForm.wedHrs1.value)
+		if (document.calcForm.wedHrs1.value == "") {
+			wedA = 0
+		}
+
+		if (document.calcForm.wedHrs1.value == "12") {
+			wedA = 0
+		}
+
+
+	var wedAA = parseInt(document.calcForm.wedMin1.value)
+		if (document.calcForm.wedMin1.value == "") {
+			wedAA = 0
+		}
+
+// PARSE THE AMOUNTS FOR WEDNESDAY'S OUT-TIME
+	var wedB = parseInt(document.calcForm.wedHrs2.value)
+		if (document.calcForm.wedHrs2.value == "") {
+			wedB = 0
+		}
+
+	var wedBB = parseInt(document.calcForm.wedMin2.value)
+		if (document.calcForm.wedMin2.value == "") {
+			wedBB = 0
+		}
+
+
+// PARSE THE AMOUNTS FOR WEDNESDAY'S  LUNCH TIME
+	var wedC = parseInt(document.calcForm.wedLunchHrs.value)
+		if (document.calcForm.wedLunchHrs.value == "") {
+			wedC = 0
+		}
+
+	var wedCC = parseInt(document.calcForm.wedLunchMin.value)
+		if (document.calcForm.wedLunchMin.value == "") {
+			wedCC = 0
+		}
+
+
+// CALC # OF TOTAL MINUTES OF IN-TIME (MULT A * 60)
+// IF THIS IS AN AFTERNOON TIME, ADD 720 MINUTES
+	var wedAAA = ( wedA * 60 ) + wedAA
+
+		if ((document.calcForm.wedRad1[1].checked) && (wedA != 12)) {
+			var wedAAA = wedAAA + 720
+		}
+// CALC # OF TOTAL MINUTES OF OUT-TIME (MULT B * 60)
+// IF THIS IS AN AFTERNOON TIME, ADD 720 MINUTES
+	var wedBBB = ( wedB * 60 ) + wedBB
+
+		if ((document.calcForm.wedRad2[1].checked) && (wedB != 12)) {
+			var wedBBB = wedBBB + 720
+		}
+
+// CALC # OF TOTAL MINUTES OF LUNCH TIME (MULT A * 60)
+// THIS IS A PLAIN TIME VALUE - NO COMPUTATIONS FOR AM/PM
+	var wedCCC = ( wedC * 60 ) + wedCC
+
+
+	// THIS CALCULATES THE TOTAL TIME FOR THURSDAY
+
+// PARSE THE AMOUNTS FOR THURSDAY'S IN-TIME
+	var thuA = parseInt(document.calcForm.thuHrs1.value)
+		if (document.calcForm.thuHrs1.value == "") {
+			thuA = 0
+		}
+
+		if (document.calcForm.thuHrs1.value == "12") {
+			thuA = 0
+		}
+
+	var thuAA = parseInt(document.calcForm.thuMin1.value)
+		if (document.calcForm.thuMin1.value == "") {
+			thuAA = 0
+		}
+
+
+// PARSE THE AMOUNTS FOR THURSDAY'S OUT-TIME
+	var thuB = parseInt(document.calcForm.thuHrs2.value)
+		if (document.calcForm.thuHrs2.value == "") {
+			thuB = 0
+		}
+
+	var thuBB = parseInt(document.calcForm.thuMin2.value)
+		if (document.calcForm.thuMin2.value == "") {
+			thuBB = 0
+		}
+
+
+// PARSE THE AMOUNTS FOR THURSDAY'S  LUNCH TIME
+	var thuC = parseInt(document.calcForm.thuLunchHrs.value)
+		if (document.calcForm.thuLunchHrs.value == "") {
+			thuC = 0
+		}
+
+	var thuCC = parseInt(document.calcForm.thuLunchMin.value)
+		if (document.calcForm.thuLunchMin.value == "") {
+			thuCC = 0
+		}
+
+
+// CALC # OF TOTAL MINUTES OF IN-TIME (MULT A * 60)
+// IF THIS IS AN AFTERNOON TIME, ADD 720 MINUTES
+	var thuAAA = ( thuA * 60 ) + thuAA
+
+		if ((document.calcForm.thuRad1[1].checked) && (thuA != 12)) {
+			var thuAAA = thuAAA + 720
+		}
+// CALC # OF TOTAL MINUTES OF OUT-TIME (MULT B * 60)
+// IF THIS IS AN AFTERNOON TIME, ADD 720 MINUTES
+	var thuBBB = ( thuB * 60 ) + thuBB
+
+		if ((document.calcForm.thuRad2[1].checked) && (thuB != 12)) {
+			var thuBBB = thuBBB + 720
+		}
+
+// CALC # OF TOTAL MINUTES OF THURSDAY LUNCH TIME (MULT A * 60)
+// THIS IS A PLAIN TIME VALUE - NO COMPUTATIONS FOR AM/PM
+	var thuCCC = ( thuC * 60 ) + thuCC
+
+
+
+
+	// THIS CALCULATES THE TOTAL TIME FOR FRIDAY
+
+// PARSE THE AMOUNTS FOR FRIDAY'S IN-TIME
+	var friA = parseInt(document.calcForm.friHrs1.value)
+		if (document.calcForm.friHrs1.value == "") {
+			friA = 0
+		}
+
+		if (document.calcForm.friHrs1.value == "12") {
+			friA = 0
+		}
+
+	var friAA = parseInt(document.calcForm.friMin1.value)
+		if (document.calcForm.friMin1.value == "") {
+			friAA = 0
+		}
+
+// PARSE THE AMOUNTS FOR FRIDAY'S OUT-TIME
+	var friB = parseInt(document.calcForm.friHrs2.value)
+		if (document.calcForm.friHrs2.value == "") {
+			friB = 0
+		}
+
+	var friBB = parseInt(document.calcForm.friMin2.value)
+		if (document.calcForm.friMin2.value == "") {
+			friBB = 0
+		}
+
+
+// PARSE THE AMOUNTS FOR FRIDAY'S  LUNCH TIME
+	var friC = parseInt(document.calcForm.friLunchHrs.value)
+		if (document.calcForm.friLunchHrs.value == "") {
+			friC = 0
+		}
+
+	var friCC = parseInt(document.calcForm.friLunchMin.value)
+		if (document.calcForm.friLunchMin.value == "") {
+			friCC = 0
+		}
+
+
+// CALC # OF TOTAL MINUTES OF FRIDAY IN-TIME (MULT A * 60)
+// IF THIS IS AN AFTERNOON TIME, ADD 720 MINUTES
+	var friAAA = ( friA * 60 ) + friAA
+
+		if ((document.calcForm.friRad1[1].checked) && (friA != 12)) {
+			var friAAA = friAAA + 720
+		}
+// CALC # OF TOTAL MINUTES OF FRIDAY OUT-TIME (MULT B * 60)
+// IF THIS IS AN AFTERNOON TIME, ADD 720 MINUTES
+	var friBBB = ( friB * 60 ) + friBB
+
+		if ((document.calcForm.friRad2[1].checked) && (friB != 12)) {
+			var friBBB = friBBB + 720
+		}
+
+// CALC # OF TOTAL MINUTES OF FRIDAY LUNCH TIME (MULT A * 60)
+// THIS IS A PLAIN TIME VALUE - NO COMPUTATIONS FOR AM/PM
+	var friCCC = ( friC * 60 ) + friCC
+
+
+	// THIS CALCULATES THE TOTAL TIME FOR OTHER DAY
+
+// PARSE THE AMOUNTS FOR OTHER IN-TIME
+	var othA = parseInt(document.calcForm.othHrs1.value)
+		if (document.calcForm.othHrs1.value == "") {
+			othA = 0
+		}
+
+		if (document.calcForm.othHrs1.value == "12") {
+			othA = 0
+		}
+
+	var othAA = parseInt(document.calcForm.othMin1.value)
+		if (document.calcForm.othMin1.value == "") {
+			othAA = 0
+		}
+
+
+// PARSE THE AMOUNTS FOR OTHER OUT-TIME
+	var othB = parseInt(document.calcForm.othHrs2.value)
+		if (document.calcForm.othHrs2.value == "") {
+			othB = 0
+		}
+
+	var othBB = parseInt(document.calcForm.othMin2.value)
+		if (document.calcForm.othMin2.value == "") {
+			othBB = 0
+		}
+
+
+// PARSE THE AMOUNTS FOR OTHER LUNCH TIME
+	var othC = parseInt(document.calcForm.othLunchHrs.value)
+		if (document.calcForm.othLunchHrs.value == "") {
+			othC = 0
+		}
+
+	var othCC = parseInt(document.calcForm.othLunchMin.value)
+		if (document.calcForm.othLunchMin.value == "") {
+			othCC = 0
+		}
+
+
+// CALC # OF TOTAL MINUTES OF OTHER IN-TIME (MULT A * 60)
+// IF THIS IS AN AFTERNOON TIME, ADD 720 MINUTES
+	var othAAA = ( othA * 60 ) + othAA
+
+		if ((document.calcForm.othRad1[1].checked) && (othA != 12)) {
+			var othAAA = othAAA + 720
+		}
+// CALC # OF TOTAL MINUTES OF OTHER OUT-TIME (MULT B * 60)
+// IF THIS IS AN AFTERNOON TIME, ADD 720 MINUTES
+	var othBBB = ( othB * 60 ) + othBB
+
+		if ((document.calcForm.othRad2[1].checked) && (othB != 12)) {
+			var othBBB = othBBB + 720
+		}
+
+// CALC # OF TOTAL MINUTES OF OTHER LUNCH TIME (MULT A * 60)
+// THIS IS A PLAIN TIME VALUE - NO COMPUTATIONS FOR AM/PM
+	var othCCC = ( othC * 60 ) + othCC
+
+
+// THIS CALCULATES THE TOTAL TIMES FOR EACH DAY
+
+	document.calcForm.monTime.value = (( monBBB - monAAA ) - monCCC) / 60
+	document.calcForm.tueTime.value = (( tueBBB - tueAAA ) - tueCCC) / 60
+	document.calcForm.wedTime.value = (( wedBBB - wedAAA ) - wedCCC) / 60
+	document.calcForm.thuTime.value = (( thuBBB - thuAAA ) - thuCCC) / 60
+	document.calcForm.friTime.value = (( friBBB - friAAA ) - friCCC) / 60
+	document.calcForm.othTime.value = (( othBBB - othAAA ) - othCCC) / 60
+
+
+// THIS PARSES THE RESULTS IN EACH FIELD
+
+	var monResult = parseFloat(document.calcForm.monTime.value)
+	var tueResult = parseFloat(document.calcForm.tueTime.value)
+	var wedResult = parseFloat(document.calcForm.wedTime.value)
+	var thuResult = parseFloat(document.calcForm.thuTime.value)
+	var friResult = parseFloat(document.calcForm.friTime.value)
+	var othResult = parseFloat(document.calcForm.othTime.value)
+
+
+// THIS CALCULATES THE TOTAL TIMES FOR THE WHOLE WEEK
+
+	document.calcForm.weekTime.value = monResult + tueResult + wedResult +
+	thuResult + friResult + othResult
+
+}
+// END OF FUNCTION weekTotal
+
+
+// ************************************************************************
+
+
+// THIS SERIES OF FUNCTIONS CHECKS TO MAKE SURE THE MINUTES ARE CORRECT FOR EACH DAY
+function checkMonMin1() {
+	if (document.calcForm.monMin1.value > 60) {
+		alert("Make sure you enter less than 60 minutes!")
+	}
+}
+
+function checkMonMin2() {
+	if (document.calcForm.monMin2.value > 60) {
+		alert("Make sure you enter less than 60 minutes!")
+	}
+}
+
+
+function checkMonLunchMin() {
+	if (document.calcForm.monLunchMin.value > 60) {
+		alert("Make sure you enter less than 60 minutes!")
+	}
+}
+
+
+function checkTueMin1() {
+	if (document.calcForm.tueMin1.value > 60) {
+		alert("Make sure you enter less than 60 minutes!")
+	}
+}
+
+function checkTueMin2() {
+	if (document.calcForm.tueMin2.value > 60) {
+		alert("Make sure you enter less than 60 minutes!")
+	}
+}
+
+function checkTueLunchMin() {
+	if (document.calcForm.tueLunchMin.value > 60) {
+		alert("Make sure you enter less than 60 minutes!")
+	}
+}
+
+function checkWedMin1() {
+	if (document.calcForm.wedMin1.value > 60) {
+		alert("Make sure you enter less than 60 minutes!")
+	}
+}
+
+function checkWedMin2() {
+	if (document.calcForm.wedMin2.value > 60) {
+		alert("Make sure you enter less than 60 minutes!")
+	}
+}
+
+function checkWedLunchMin() {
+	if (document.calcForm.wedLunchMin.value > 60) {
+		alert("Make sure you enter less than 60 minutes!")
+	}
+}
+
+function checkThuMin1() {
+	if (document.calcForm.thuMin1.value > 60) {
+		alert("Make sure you enter less than 60 minutes!")
+	}
+}
+
+function checkThuMin2() {
+	if (document.calcForm.thuMin2.value > 60) {
+		alert("Make sure you enter less than 60 minutes!")
+	}
+}
+
+function checkThuLunchMin() {
+	if (document.calcForm.thuLunchMin.value > 60) {
+		alert("Make sure you enter less than 60 minutes!")
+	}
+}
+
+
+function checkFriMin1() {
+	if (document.calcForm.friMin1.value > 60) {
+		alert("Make sure you enter less than 60 minutes!")
+	}
+}
+
+function checkFriMin2() {
+	if (document.calcForm.friMin2.value > 60) {
+		alert("Make sure you enter less than 60 minutes!")
+	}
+}
+
+function checkFriLunchMin() {
+	if (document.calcForm.friLunchMin.value > 60) {
+		alert("Make sure you enter less than 60 minutes!")
+	}
+}
+
+
+function checkOthMin1() {
+	if (document.calcForm.othMin1.value > 60) {
+		alert("Make sure you enter less than 60 minutes!")
+	}
+}
+
+function checkOthMin2() {
+	if (document.calcForm.othMin2.value > 60) {
+		alert("Make sure you enter less than 60 minutes!")
+	}
+}
+
+function checkOthLunchMin() {
+	if (document.calcForm.othLunchMin.value > 60) {
+		alert("Make sure you enter less than 60 minutes!")
+	}
+}
+// END OF CHECKING MINUTES FOR EACH DAY
+
+
+// ************************************************************************
+
+
+// THIS CHECKS TO MAKE SURE THE HOURS ARE CORRECT FOR EACH DAY
+function checkMonHrs1() {
+	if (document.calcForm.monHrs1.value > 12) {
+		alert("We're on the 12-hour clock. Make sure you enter less than 12 hours.")
+	}
+}
+
+function checkMonHrs2() {
+	if (document.calcForm.monHrs2.value > 12) {
+alert("We're on the 12-hour clock. Make sure you enter less than 12 hours.")
+	}
+}
+
+
+function checkMonLunchHrs() {
+	if (document.calcForm.monLunchHrs.value > 12) {
+		alert("We're on the 12-hour clock.  Make sure you enter less than 12 hours.")
+	}
+}
+
+
+function checkTueHrs1() {
+	if (document.calcForm.tueHrs1.value > 12) {
+		alert("We're on the 12-hour clock.  Make sure you enter less than 12 hours.")
+	}
+}
+
+function checkTueHrs2() {
+	if (document.calcForm.tueHrs2.value > 12) {
+		alert("We're on the 12-hour clock.  Make sure you enter less than 12 hours.")
+	}
+}
+
+function checkTueLunchHrs() {
+	if (document.calcForm.tueLunchHrs.value > 12) {
+		alert("We're on the 12-hour clock.  Make sure you enter less than 12 hours.")
+	}
+}
+
+function checkWedHrs1() {
+	if (document.calcForm.wedHrs1.value > 12) {
+		alert("We're on the 12-hour clock.  Make sure you enter less than 12 hours.")
+	}
+}
+
+function checkWedHrs2() {
+	if (document.calcForm.wedHrs2.value > 12) {
+		alert("We're on the 12-hour clock.  Make sure you enter less than 12 hours.")
+	}
+}
+
+function checkWedLunchHrs() {
+	if (document.calcForm.wedLunchHrs.value > 12) {
+		alert("We're on the 12-hour clock.  Make sure you enter less than 12 hours.")
+	}
+}
+
+function checkThuHrs1() {
+	if (document.calcForm.thuHrs1.value > 12) {
+		alert("We're on the 12-hour clock.  Make sure you enter less than 12 hours.")
+	}
+}
+
+function checkThuHrs2() {
+	if (document.calcForm.thuHrs2.value > 12) {
+		alert("We're on the 12-hour clock.  Make sure you enter less than 12 hours.")
+	}
+}
+
+function checkThuLunchHrs() {
+	if (document.calcForm.thuLunchHrs.value > 12) {
+		alert("We're on the 12-hour clock.  Make sure you enter less than 12 hours.")
+	}
+}
+
+
+function checkFriHrs1() {
+	if (document.calcForm.friHrs1.value > 12) {
+		alert("We're on the 12-hour clock.  Make sure you enter less than 12 hours.")
+	}
+}
+
+function checkFriHrs2() {
+	if (document.calcForm.friHrs2.value > 12) {
+		alert("We're on the 12-hour clock.  Make sure you enter less than 12 hours.")
+	}
+}
+
+function checkFriLunchHrs() {
+	if (document.calcForm.friLunchHrs.value > 12) {
+		alert("We're on the 12-hour clock.  Make sure you enter less than 12 hours.")
+	}
+}
+
+function checkOthHrs1() {
+	if (document.calcForm.othHrs1.value > 12) {
+		alert("We're on the 12-hour clock.  Make sure you enter less than 12 hours.")
+	}
+}
+
+function checkOthHrs2() {
+	if (document.calcForm.othHrs2.value > 12) {
+		alert("We're on the 12-hour clock.  Make sure you enter less than 12 hours.")
+	}
+}
+
+function checkOthLunchHrs() {
+	if (document.calcForm.othLunchHrs.value > 12) {
+		alert("We're on the 12-hour clock.  Make sure you enter less than 12 hours.")
+	}
+}
+//END OF CHECKING HOURS OF EACH DAY
+
+
+// ************************************************************************
+
+
+// THIS CALCULATES THE OT
+function calcOT() {
+	var regHours = parseFloat(document.calcForm.regHrs.value)
+	var OT = parseFloat(document.calcForm.weekTime.value)
+	OT = OT - regHours
+	document.calcForm.weekOT.value = OT
+}
+// END OF FUNCTION calcOT
+
+
+// ************************************************************************
+
+
+function openInstructions() {
+	var msg = window.open('instruct.htm', 'window2', 'resizable=yes,width=420,height=340')
+}
+
+
+function printResults() {
+
+  var resultsWin = window.open('', 'window3', 'resizable=yes,width=320,height=380')
+  var d = resultsWin.document;
+  d.write('<HTML><HEAD><TITLE>Weekly Hours Total</TITLE></HEAD>\n');
+  d.write('<BODY BGCOLOR="#FFFFFF" onLoad="self.focus();"><CENTER>\n');
+  d.write('<CENTER><FONT FACE="Arial,Helvetica,sans"><B>Total Hours</B>');
+
+  if (document.nameForm.yourName.value != "") {
+    d.write('<B> for ' + document.nameForm.yourName.value + '</B></FONT>\n');
+  }
+
+  if (document.nameForm.weekStarting.value != "") {
+    d.write('<BR><FONT SIZE="2" FACE="Arial,Helvetica,sans"><B>For the week of  ' + document.nameForm.weekStarting.value + '</B></FONT><P>\n');
+  }
+
+  d.write('<TABLE WIDTH="300" CELLPADDING="4" CELLSPACING="0" BORDER="0">\n');
+  d.write('<TR VALIGN="top"><TD WIDTH="150" ALIGN="right"><FONT SIZE="2" FACE="Arial,Helvetica,sans">Monday: </FONT></TD>\n');
+  d.write('<TD WIDTH="150"><FONT SIZE="2" FACE="Arial,Helvetica,sans">' + document.calcForm.monTime.value + ' Hours');
+  d.write('</FONT></TD></TR>\n');
+  d.write('<TR VALIGN="top"><TD ALIGN="right"><FONT SIZE="2" FACE="Arial,Helvetica,sans">Tuesday: </FONT></TD>\n');
+  d.write('<TD><FONT SIZE="2" FACE="Arial,Helvetica,sans">' + document.calcForm.tueTime.value + ' Hours');
+  d.write('</FONT></TD></TR>\n');
+  d.write('<TR VALIGN="top"><TD ALIGN="right"><FONT SIZE="2" FACE="Arial,Helvetica,sans">Wednesday: </FONT></TD>\n');
+  d.write('<TD><FONT SIZE="2" FACE="Arial,Helvetica,sans">' + document.calcForm.wedTime.value + ' Hours');
+  d.write('</FONT></TD></TR>\n');
+  d.write('<TR VALIGN="top"><TD ALIGN="right"><FONT SIZE="2" FACE="Arial,Helvetica,sans">Thursday: </FONT></TD>\n');
+  d.write('<TD><FONT SIZE="2" FACE="Arial,Helvetica,sans">' + document.calcForm.thuTime.value + ' Hours');
+  d.write('</FONT></TD></TR>\n');
+  d.write('<TR VALIGN="top"><TD ALIGN="right"><FONT SIZE="2" FACE="Arial,Helvetica,sans">Friday: </FONT></TD>\n');
+  d.write('<TD><FONT SIZE="2" FACE="Arial,Helvetica,sans">' + document.calcForm.friTime.value + ' Hours</B>');
+  d.write('</FONT></TD></TR>\n');
+
+  if (document.calcForm.othTime.value != "0") {
+    d.write('<TR VALIGN="top"><TD ALIGN="right"><FONT SIZE="2" FACE="Arial,Helvetica,sans">Additional day: </FONT></TD>\n');
+    d.write('<TD><FONT SIZE="2" FACE="Arial,Helvetica,sans">' + document.calcForm.othTime.value + ' Hours');
+    d.write('</FONT></TD></TR>\n');
+  }
+
+  d.write('<TR VALIGN="top"><TD COLSPAN="2" ALIGN="center"><HR WIDTH="200"></TD></TR>\n');
+  d.write('<TR VALIGN="top"><TD ALIGN="right"><FONT SIZE="2" FACE="Arial,Helvetica,sans"><B>Weekly Total: </B></FONT></TD>\n');
+  d.write('<TD><FONT SIZE="2" FACE="Arial,Helvetica,sans"><B>' + document.calcForm.weekTime.value + ' Hours</B>');
+  d.write('</FONT></TD></TR>\n');
+  d.write('<TR VALIGN="top"><TD ALIGN="right"><FONT SIZE="2" FACE="Arial,Helvetica,sans">Overtime: </FONT></TD>\n');
+  d.write('<TD><FONT SIZE="2" FACE="Arial,Helvetica,sans">' + document.calcForm.weekOT.value + ' Hours [Over ' + document.calcForm.regHrs.value + ']');
+  d.write('</FONT></TD></TR>\n');
+  d.write('</TABLE>\n');
+  d.write('<CENTER><FORM><INPUT TYPE="button" VALUE="Close" onClick="window.close()"></FORM></CENTER>\n');
+  d.write('<P><FONT SIZE="2" FACE="Arial,Helvetica,sans"><I>Press Ctrl+P (PC) or Cmd+P (Mac) to print your weekly results.</I></FONT><P>\n');
+  d.write('</CENTER>\n');
+  d.write('</BODY></HTML>\n');
+  d.close();
+
+}
+
+// END HIDING -->
+</SCRIPT>
+
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF">
+<BASEFONT FACE="Arial, Helvetica">
+
+<!-- ****************************************************************-->
+<!--               WRAPPER TABLE THAT HOLDS THE CALCULATOR           -->           
+<!--       INPUT FIELDS ON THE LEFT AND OUTPUT FIELDS ON THE RIGHT   -->
+<!--     MAKE SURE THE OUTPUT FIELDS ARE OVER ON THE RIGHT-HAND SIDE -->
+<!--       THAT WAY, WHEN THE USER INPUTS THE NUMBERS, THEY CAN      -->
+<!--     TAB FROM FIELD TO FIELD WITHOUT WRITING OVER THE RESULTS    -->
+<!-- ****************************************************************-->
+<FORM NAME="nameForm">
+<CENTER>
+<P>
+<FONT SIZE="4" FACE="Arial, Helvetica"><B>Timesheet Calculator</B><BR>
+<FONT SIZE="2"><A HREF="javascript:openInstructions();"><B>See
+Instructions</B></A>
+<P>
+&nbsp;&nbsp;Your Name: <INPUT TYPE="text" NAME="yourName" SIZE=25 MAXLENGTH=50>
+&nbsp;&nbsp;&nbsp;&nbsp;
+Week Starting: <INPUT TYPE="text" NAME="weekStarting" SIZE=25 MAXLENGTH=50>
+</FONT>
+</CENTER>
+</FORM>
+<p>
+
+<FORM NAME="calcForm">
+<CENTER>
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH=700>
+
+<!-- BEGINNING OF ROW THAT HOLDS THE CALCULATOR -->
+
+<TR>
+
+<!-- BEGINNING OF FIRST COLUMN THAT HOLDS THE INPUT FIELDS -->
+<TD VALIGN=TOP ALIGN=RIGHT>
+
+<TABLE BORDER="0" CELLPADDING=3 CELLSPACING=0">
+<TR>
+
+<TH BGCOLOR="#FFFF66">
+&nbsp;
+</TH>
+
+<TH COLSPAN=3 BGCOLOR="#FFFF66"><FONT FACE="Arial, Helvetica" COLOR="#000000">
+Time In
+</TH>
+
+<TH COLSPAN=4 BGCOLOR="#FFFF66"><FONT FACE="Arial, Helvetica" COLOR="#000000">
+Time Out
+</TH>
+
+<TH BGCOLOR="#FFFF66">&nbsp;</TH>
+
+<TH COLSPAN=2 BGCOLOR="#FFFF66"><FONT FACE="Arial, Helvetica" COLOR="#000000">
+<A HREF="javascript:alert('Enter your Lunch hours as the total time,\nrather than as start\/end time\n\(i.e., 1 hour 30 minutes, or 45 minutes\).')">Lunch*</A>
+</TH>
+</TR>
+
+<TR>
+
+<TH></TH>
+<TH HEIGHT=20><B><FONT FACE="Arial, Helvetica" SIZE=2>Hrs</FONT></B><BR></TH>
+<TH HEIGHT=20><B><FONT FACE="Arial, Helvetica" SIZE=2>Min</FONT></B><BR></TH>
+<TH COLSPAN="2" HEIGHT=20></TH>
+<TH HEIGHT=20><B><FONT FACE="Arial, Helvetica" SIZE=2>Hrs</FONT></B><BR></TH>
+<TH HEIGHT=20><B><FONT FACE="Arial, Helvetica" SIZE=2>Min</FONT></B><BR></TH>
+<TH COLSPAN="2" HEIGHT=20></TH>
+<TH HEIGHT=20><B><FONT FACE="Arial, Helvetica" SIZE=2>Hrs</FONT></B><BR></TH>
+<TH HEIGHT=20><B><FONT FACE="Arial, Helvetica" SIZE=2>Min</FONT></B><BR></TH>
+
+
+
+</TR>
+
+	<!-- START OF MONDAY NUMBERS -->
+
+<TR>
+
+<TD HEIGHT=50><FONT FACE="Arial, Helvetica"><B>Monday</B></TD>
+
+<TD ALIGN=CENTER><INPUT TYPE="text" NAME="monHrs1" SIZE=2 MAXLENGTH=2 
+onChange="checkMonHrs1()"></TD>
+
+<TD ALIGN=CENTER><INPUT TYPE="text" NAME="monMin1" SIZE=2 MAXLENGTH=2 
+onChange="checkMonMin1()"></TD>
+
+<TD><FONT FACE="Arial, Helvetica" SIZE="2">
+<INPUT TYPE="radio" NAME="monRad1"> A.M.
+<BR>
+<INPUT TYPE="radio" NAME="monRad1"> P.M.</FONT></TD>
+
+<TD WIDTH=25>
+&nbsp;
+</TD>
+
+<TD ALIGN=CENTER><INPUT TYPE="text" NAME="monHrs2" SIZE=2 MAXLENGTH=2 
+onChange="checkMonHrs2()"></TD>
+
+<TD ALIGN=CENTER><INPUT TYPE="text" NAME="monMin2" SIZE=2 MAXLENGTH=2 
+onChange="checkMonMin2()"></TD>
+
+<TD><FONT FACE="Arial, Helvetica" SIZE="2"><INPUT TYPE="radio" NAME="monRad2"> A.M.
+<BR>
+<INPUT TYPE="radio" NAME="monRad2"> P.M.</FONT></TD>
+
+
+<TD WIDTH=25>&nbsp;</TD>
+
+
+<TD ALIGN=CENTER><INPUT TYPE="text" NAME="monLunchHrs" SIZE=2 MAXLENGTH=2 
+onChange="checkMonLunchHrs()"></TD>
+
+<TD ALIGN=CENTER><INPUT TYPE="text" NAME="monLunchMin" SIZE=2 MAXLENGTH=2 
+onChange="checkMonLunchMin()"></TD>
+
+</TR>
+
+	<!-- START OF TUESDAY NUMBERS -->
+
+<TR>
+
+<TD HEIGHT=50><FONT FACE="Arial, Helvetica">
+<B>Tuesday</B>
+</FONT></TD>
+
+<TD><FONT FACE="Arial, Helvetica">
+<INPUT TYPE="text" NAME="tueHrs1" SIZE=2 MAXLENGTH=2 
+onChange="checkTueHrs1()">
+</FONT></TD>
+
+<TD><FONT FACE="Arial, Helvetica">
+<INPUT TYPE="text" NAME="tueMin1" SIZE=2 MAXLENGTH=2 
+onChange="checkTueMin1()">
+</FONT></TD>
+
+<TD><FONT FACE="Arial, Helvetica" SIZE="2">
+<INPUT TYPE="radio" NAME="tueRad1"> A.M.
+<BR>
+<INPUT TYPE="radio" NAME="tueRad1"> P.M.
+</FONT></TD>
+
+<TD WIDTH=25>
+&nbsp;
+</TD>
+
+<TD><FONT FACE="Arial, Helvetica">
+<INPUT TYPE="text" NAME="tueHrs2" SIZE=2 MAXLENGTH=2 
+onChange="checkTueHrs2()">
+</FONT></TD>
+
+<TD><FONT FACE="Arial, Helvetica">
+<INPUT TYPE="text" NAME="tueMin2" SIZE=2 MAXLENGTH=2 
+onChange="checkTueMin2()">
+</FONT></TD>
+
+<TD><FONT FACE="Arial, Helvetica" SIZE="2">
+<INPUT TYPE="radio" NAME="tueRad2"> A.M.
+<BR>
+<INPUT TYPE="radio" NAME="tueRad2"> P.M.
+</FONT></TD>
+
+<TD WIDTH=25>
+&nbsp;
+</TD>
+
+<TD ALIGN=RIGHT>
+<INPUT TYPE="text" NAME="tueLunchHrs" SIZE=2 MAXLENGTH=2 
+onChange="checkTueLunchHrs()">
+</TD>
+
+<TD><FONT FACE="Arial, Helvetica">
+<INPUT TYPE="text" NAME="tueLunchMin" SIZE=2 MAXLENGTH=2 
+onChange="checkTueLunchMin()">
+</FONT></TD>
+
+</TR>
+
+
+	<!-- START OF WEDNESDAY NUMBERS -->
+
+<TR>
+
+<TD HEIGHT=50><FONT FACE="Arial, Helvetica">
+<B>Wednesday</B>
+</FONT></TD>
+
+<TD><FONT FACE="Arial, Helvetica">
+<INPUT TYPE="text" NAME="wedHrs1" SIZE=2 MAXLENGTH=2 
+onChange="checkWedHrs1()">
+</FONT></TD>
+
+<TD><FONT FACE="Arial, Helvetica">
+<INPUT TYPE="text" NAME="wedMin1" SIZE=2 MAXLENGTH=2 
+onChange="checkWedMin1()">
+</FONT></TD>
+
+<TD><FONT FACE="Arial, Helvetica" SIZE="2">
+<INPUT TYPE="radio" NAME="wedRad1"> A.M.
+<BR>
+<INPUT TYPE="radio" NAME="wedRad1"> P.M.
+</FONT></TD>
+
+<TD WIDTH=25>
+&nbsp;
+</FONT></TD>
+
+<TD><FONT FACE="Arial, Helvetica">
+<INPUT TYPE="text" NAME="wedHrs2" SIZE=2 MAXLENGTH=2 
+onChange="checkWedHrs2()">
+</FONT></TD>
+
+<TD><FONT FACE="Arial, Helvetica">
+<INPUT TYPE="text" NAME="wedMin2" SIZE=2 MAXLENGTH=2 
+onChange="checkWedMin2()">
+</FONT></TD>
+
+<TD><FONT FACE="Arial, Helvetica" SIZE="2">
+<INPUT TYPE="radio" NAME="wedRad2"> A.M.
+<BR>
+<INPUT TYPE="radio" NAME="wedRad2"> P.M.
+</FONT></TD>
+
+<TD WIDTH=25>
+&nbsp;
+</FONT></TD>
+
+
+<TD ALIGN=RIGHT>
+<INPUT TYPE="text" NAME="wedLunchHrs" SIZE=2 MAXLENGTH=2 
+onChange="checkWedLunchHrs()">
+</FONT></TD>
+
+<TD><FONT FACE="Arial, Helvetica">
+<INPUT TYPE="text" NAME="wedLunchMin" SIZE=2 MAXLENGTH=2 
+onChange="checkWedLunchMin()">
+</FONT></TD>
+
+</TR>
+
+	<!-- START OF THURSDAY NUMBERS -->
+
+<TR>
+
+<TD HEIGHT=50><FONT FACE="Arial, Helvetica">
+<B>Thursday</B>
+</FONT></TD>
+
+<TD><FONT FACE="Arial, Helvetica">
+<INPUT TYPE="text" NAME="thuHrs1" SIZE=2 MAXLENGTH=2 
+onChange="checkThuHrs1()">
+</FONT></TD>
+
+<TD><FONT FACE="Arial, Helvetica">
+<INPUT TYPE="text" NAME="thuMin1" SIZE=2 MAXLENGTH=2 
+onChange="checkThuMin1()">
+</FONT></TD>
+
+<TD><FONT FACE="Arial, Helvetica" SIZE="2">
+<INPUT TYPE="radio" NAME="thuRad1"> A.M.
+<BR>
+<INPUT TYPE="radio" NAME="thuRad1"> P.M.
+</FONT></TD>
+
+<TD WIDTH=25>
+&nbsp;
+</FONT></TD>
+
+<TD><FONT FACE="Arial, Helvetica">
+<INPUT TYPE="text" NAME="thuHrs2" SIZE=2 MAXLENGTH=2 
+onChange="checkThuHrs2()">
+</FONT></TD>
+
+<TD><FONT FACE="Arial, Helvetica">
+<INPUT TYPE="text" NAME="thuMin2" SIZE=2 MAXLENGTH=2 
+onChange="checkThuMin2()">
+</FONT></TD>
+
+<TD><FONT FACE="Arial, Helvetica" SIZE="2">
+<INPUT TYPE="radio" NAME="thuRad2"> A.M.
+<BR>
+<INPUT TYPE="radio" NAME="thuRad2"> P.M.
+</FONT></TD>
+
+<TD WIDTH=25>
+&nbsp;
+</FONT></TD>
+
+
+<TD ALIGN=RIGHT>
+<INPUT TYPE="text" NAME="thuLunchHrs" SIZE=2 MAXLENGTH=2 
+onChange="checkThuLunchHrs()">
+</FONT></TD>
+
+<TD><FONT FACE="Arial, Helvetica">
+<INPUT TYPE="text" NAME="thuLunchMin" SIZE=2 MAXLENGTH=2 
+onChange="checkThuLunchMin()">
+</FONT></TD>
+
+
+</TR>
+
+<!-- START OF FRIDAY NUMBERS -->
+
+<TR>
+
+<TD HEIGHT=50><FONT FACE="Arial, Helvetica">
+<B>Friday</B>
+</FONT></TD>
+
+<TD><FONT FACE="Arial, Helvetica">
+<INPUT TYPE="text" NAME="friHrs1" SIZE=2 MAXLENGTH=2 
+onChange="checkFriHrs1()">
+</FONT></TD>
+
+<TD><FONT FACE="Arial, Helvetica">
+<INPUT TYPE="text" NAME="friMin1" SIZE=2 MAXLENGTH=2 
+onChange="checkFriMin1()">
+</FONT></TD>
+
+<TD><FONT FACE="Arial, Helvetica" SIZE="2">
+<INPUT TYPE="radio" NAME="friRad1"> A.M.
+<BR>
+<INPUT TYPE="radio" NAME="friRad1"> P.M.
+</FONT></TD>
+
+<TD WIDTH=25>
+&nbsp;
+</FONT></TD>
+
+<TD><FONT FACE="Arial, Helvetica">
+<INPUT TYPE="text" NAME="friHrs2" SIZE=2 MAXLENGTH=2 
+onChange="checkFriHrs2()">
+</FONT></TD>
+
+<TD><FONT FACE="Arial, Helvetica">
+<INPUT TYPE="text" NAME="friMin2" SIZE=2 MAXLENGTH=2 
+onChange="checkFriMin2()">
+</FONT></TD>
+
+<TD><FONT FACE="Arial, Helvetica" SIZE="2">
+<INPUT TYPE="radio" NAME="friRad2"> A.M.
+<BR>
+<INPUT TYPE="radio" NAME="friRad2"> P.M.
+</FONT></TD>
+
+
+<TD WIDTH=25>
+&nbsp;
+</FONT></TD>
+
+
+<TD ALIGN=RIGHT>
+<INPUT TYPE="text" NAME="friLunchHrs" SIZE=2 MAXLENGTH=2 
+onChange="checkFriHrs2()">
+</FONT></TD>
+
+<TD><FONT FACE="Arial, Helvetica">
+<INPUT TYPE="text" NAME="friLunchMin" SIZE=2 MAXLENGTH=2 
+onChange="checkFriLunchMin()">
+</FONT></TD>
+
+</TR>
+
+<!-- START OF OTHER DAY NUMBERS -->
+
+<TR>
+
+<TD HEIGHT=50><FONT FACE="Arial, Helvetica">
+<B>Other Day</B>
+</FONT></TD>
+
+<TD><FONT FACE="Arial, Helvetica">
+<INPUT TYPE="text" NAME="othHrs1" SIZE=2 MAXLENGTH=2 
+onChange="checkOthHrs1()">
+</FONT></TD>
+
+<TD><FONT FACE="Arial, Helvetica">
+<INPUT TYPE="text" NAME="othMin1" SIZE=2 MAXLENGTH=2 
+onChange="checkOthMin1()">
+</FONT></TD>
+
+<TD><FONT FACE="Arial, Helvetica" SIZE="2">
+<INPUT TYPE="radio" NAME="othRad1"> A.M.
+<BR>
+<INPUT TYPE="radio" NAME="othRad1"> P.M.
+</FONT></TD>
+
+
+<TD><FONT FACE="Arial, Helvetica">
+&nbsp;
+</FONT></TD>
+
+
+<TD><FONT FACE="Arial, Helvetica">
+<INPUT TYPE="text" NAME="othHrs2" SIZE=2 MAXLENGTH=2 
+onChange="checkOthHrs2()">
+</FONT></TD>
+
+<TD><FONT FACE="Arial, Helvetica">
+<INPUT TYPE="text" NAME="othMin2" SIZE=2 MAXLENGTH=2 
+onChange="checkOthMin2()">
+</FONT></TD>
+
+<TD><FONT FACE="Arial, Helvetica" SIZE="2">
+<INPUT TYPE="radio" NAME="othRad2"> A.M.
+<BR>
+<INPUT TYPE="radio" NAME="othRad2"> P.M.
+</FONT></TD>
+
+
+<TD><FONT FACE="Arial, Helvetica">
+&nbsp;
+</FONT></TD>
+
+
+<TD ALIGN=RIGHT>
+<INPUT TYPE="text" NAME="othLunchHrs" SIZE=2 MAXLENGTH=2 
+onChange="checkOthLunchHrs()">
+</FONT></TD>
+
+<TD><FONT FACE="Arial, Helvetica">
+<INPUT TYPE="text" NAME="othLunchMin" SIZE=2 MAXLENGTH=2 
+onChange="checkOthLunchMin()">
+</FONT></TD>
+
+
+
+</TR>
+
+<TR>
+
+<TD COLSPAN=11 ROWSPAN=2 ALIGN=RIGHT VALIGN=MIDDLE BGCOLOR="#FFFF66">
+<FONT FACE="Arial, Helvetica">
+<INPUT TYPE="reset" VALUE="Clear and Start Again">&nbsp;&nbsp;&nbsp;&nbsp;
+<INPUT TYPE="button" VALUE="Calculate Hours" NAME="weekAmount"
+onClick="weekTotal()">&nbsp;&nbsp;<B>Week Total:</B>
+</FONT></TD>
+
+</TR>
+</TABLE>
+
+
+
+
+</FONT></TD>
+
+<!-- END OF SECOND COLUMN THAT HOLDS THE INPUT FIELDS -->
+
+
+<!-- BEGINNING OF THIRD COLUMN THAT HOLDS THE OUTPUT FIELDS -->
+
+<TD VALIGN=TOP ALIGN=LEFT>
+
+<TABLE CELLPADDING=3 CELLSPACING=0 BORDER="0">
+<TR>
+<TH BGCOLOR="#FFFF66" ALIGN=RIGHT><FONT FACE="Arial, Helvetica">
+<A HREF="javascript:alert('Do not enter any values in this column.\nThey will automatically compute\nwhen you click Calculate Hours.')">Total Hours**</A>
+</FONT></TH>
+</TR>
+
+<TR><TD HEIGHT=20>&nbsp;</TD></TR>
+
+<TR>
+<TD ALIGN=CENTER HEIGHT=50>
+<INPUT TYPE="text" NAME="monTime" SIZE=5 MAXLENGTH=5>
+</FONT></TD>
+</TR>
+
+<TR>
+<TD ALIGN=CENTER HEIGHT=50>
+<INPUT TYPE="text" NAME="tueTime" SIZE=5 MAXLENGTH=5>
+</FONT></TD>
+</TR>
+
+<TR>
+<TD ALIGN=CENTER HEIGHT=50>
+<INPUT TYPE="text" NAME="wedTime" SIZE=5 MAXLENGTH=5>
+</FONT></TD>
+</TR>
+
+<TR>
+<TD ALIGN=CENTER HEIGHT=50>
+<INPUT TYPE="text" NAME="thuTime" SIZE=5 MAXLENGTH=5>
+</FONT></TD>
+</TR>
+
+<TR>
+<TD ALIGN=CENTER HEIGHT=50>
+<INPUT TYPE="text" NAME="friTime" SIZE=5 MAXLENGTH=5>
+</FONT></TD>
+</TR>
+
+<TR>
+<TD ALIGN=CENTER HEIGHT=50>
+<INPUT TYPE="text" NAME="othTime" SIZE=5 MAXLENGTH=5>
+</FONT></TD>
+</TR>
+
+<TR>
+<TD COLSPAN=2 HEIGHT=18 ALIGN=CENTER BGCOLOR="#FFFF66">
+<INPUT TYPE="text" NAME="weekTime" SIZE=5></FONT></TD>
+
+
+</TR>
+</TABLE>
+
+
+
+
+</FONT></TD>
+
+<!-- END OF THIRD COLUMN THAT HOLDS THE OUTPUT FIELDS -->
+
+</TR>
+
+<TR><TD><!-- SPACER ROW -->&nbsp;</FONT></TD></TR>
+
+<!-- ROW THAT HOLDS THE CALC BUTTONS FOR OT -->
+<TD COLSPAN=2 ALIGN=RIGHT><FONT FACE="Arial, Helvetica">
+
+<B>Enter your regular hours here (i.e., 35 or 40)
+<INPUT TYPE="text" NAME="regHrs" SIZE=2>&nbsp;&nbsp;
+<INPUT TYPE="button" NAME="calcButton" VALUE="Calculate Overtime" 
+onClick="calcOT()">&nbsp;&nbsp;
+<INPUT TYPE="text" NAME="weekOT" SIZE=5>&nbsp;
+</FONT></TD>
+</TR>
+</TABLE>
+<P>
+<INPUT TYPE="button" NAME="calcButton" VALUE="               Print Results               " 
+onClick="printResults();">
+
+</CENTER>
+</FORM>
+<P>
+<!-- ver 2.0 12/6/97 -->
+<!-- Copyright (c) 1997 by Kay Stoner, All Rights Reserved -->
+<!-- ver 1.0 created June, 1997 -->
+<!-- ver 1.01 revised December 1997 -->
+<!-- verson 2.0 created Jun3, 1999 -->
+<FONT FACE="Arial, Helvetica" SIZE=2><ADDRESS><BR>Copyright &copy; 1997, 1998, 1999 by Kay Stoner, All Rights Reserved
+Created June, 1997, Rev. 1.0 December, 1997, Rev. 1.01 June, 1997, Rev. 2.0 June, 1999 by <A
+HREF="mailto:KLStoner@aol.com">Kay Stoner</A><br>
+Here be there <A HREF="disclaimer.htm">fine print</A> -- what else?</ADDRESS></FONT>
+
+
+</BODY>
+</HTML>

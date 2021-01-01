@@ -1,0 +1,67 @@
+<HTML>
+<HEAD>
+<TITLE>JavaScript Project Timer</TITLE>
+
+	<SCRIPT LANGUAGE="JavaScript">
+	<!-- Hide code from old browsers
+
+function timeIn() {
+	enter=new Date();
+}
+
+function timeOut() {
+	exit=new Date();
+	time_dif=( (exit.getTime()-enter.getTime()) / 1000);
+	time_dif_sec=Math.round(time_dif);
+	time_dif_min=Math.round(time_dif_sec/60);
+	time_dif_hr=(time_dif_min/60);
+	if ( (time_dif > 0) && (time_dif <= 59) ){
+		alert ("You have worked on this project for " + time_dif_sec + " seconds");
+	}
+	if ( (time_dif > 59) && (time_dif < 3600) ){
+		alert ("You have worked on this project for " + time_dif_min + " minutes");
+	}
+	if (time_dif > 3600){
+		alert ("You have worked on this project for " + time_dif_hr + " hours");
+	}
+}
+
+	// done hiding code -->
+	</SCRIPT>
+
+</HEAD>
+
+<BODY BGCOLOR="#ffffff">
+
+
+<CENTER>
+
+<FORM>
+<FONT FACE="Arial, Helvetica" COLOR="#006600"><B>Project:</B></FONT> <INPUT TYPE=text>
+<P>
+
+<FONT FACE="Arial, Helvetica" COLOR="black">
+<B>Click on the links below to see how long you've worked on the current project</B></FONT>
+<BR>
+
+<FONT FACE="Arial, Helvetica" COLOR="white"><B>Timer is Running...</B></FONT>
+
+<TABLE WIDTH="90%" CELLPADDING=5 CELLSPACING=5><TR><TD ALIGN=CENTER VALIGN=TOP WIDTH="50%><FONT FACE="Arial, Helvetica">
+<A HREF="javascript:void(timeIn())" 
+onClick="document.bgColor='black'" "document.linkColor='white'" "document.vlinkColor='black'">Start timing</A>
+</FONT></TD>
+<TD ALIGN=CENTER VALIGN=TOP WIDTH="50%><FONT FACE="Arial, Helvetica">
+<A HREF="javascript:void(timeOut())">See the total time for this project</A>
+</FONT></TD></TR></TABLE>
+<P>
+<INPUT type="button" name="close_window" value=" Close " onClick=window.close() BGCOLOR="#ffffff">
+
+<INPUT type="button" name="reset" value=" Reset " onClick=location.reload() BGCOLOR="#ffffff">
+
+</FORM>
+</CENTER>
+
+</FONT>
+
+</BODY>
+</HTML>
